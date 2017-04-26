@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class VerbindungAufbauen {
 
 	public static void main(String[] args) {
-		String dbDriver = "com.mysql.jdbc.Driver";
+		String dbDriver = "com.mysql.cj.jdbc.Driver";
 		try {
 			Class.forName( dbDriver).newInstance();
 		} catch (Exception e) {
