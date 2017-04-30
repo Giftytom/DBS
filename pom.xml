@@ -11,7 +11,7 @@
 			<version>6.0.6</version>
 		</dependency>
 	</dependencies>
- 	<build>
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -21,6 +21,21 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>ch.ffhs.dbs.jdbc.VerbindungAufbauen</mainClass>
+						</manifest>
+						<includes>
+							<include>ch/ffhs/dbs/jdbc/*</include>
+						</includes>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
-	</build>  
+	</build>
 </project>
