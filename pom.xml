@@ -30,9 +30,12 @@
 							<addClasspath>true</addClasspath>
 							<mainClass>ch.ffhs.dbs.jdbc.VerbindungAufbauen</mainClass>
 						</manifest>
+						<!--
 						<includes>
-							<include>ch/ffhs/dbs/jdbc/*</include>
+							<include>/ch/ffhs/dbs/jdbc/*</include>
 						</includes>
+						-->
+
 					</archive>
 				</configuration>
 			</plugin>
