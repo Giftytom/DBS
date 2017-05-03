@@ -9,6 +9,9 @@ Identifizieren Sie alle Testfälle, welche in Ihren Testdaten vorhanden sein mü
 
 Dokumentieren Sie.
 */
+-- Kunden suchen über Name
+SET @KundeId = (SELECT max(KundeId) FROM Person p, Kunde k WHERE p.PersonId = k.PersonId AND Nachname = "Hopf" AND Vorname = "Samuel");
+
 -- Buchung erstellen
 SET @NeueBuchungId = (SELECT max(BuchungId) + 1 FROM Buchung);
 SET @AnreiseDatum = "2017-08-01";
