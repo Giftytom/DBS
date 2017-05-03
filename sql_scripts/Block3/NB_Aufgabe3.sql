@@ -9,8 +9,11 @@ Identifizieren Sie alle Testfälle, welche in Ihren Testdaten vorhanden sein mü
 
 Dokumentieren Sie.
 */
+use hotel;
 -- Kunden suchen über Name
-SET @KundeId = (SELECT max(KundeId) FROM Person p, Kunde k WHERE p.PersonId = k.PersonId AND Nachname = "Hopf" AND Vorname = "Samuel");
+SET @KundeId = (SELECT max(KundeId) 
+	FROM Person p, Kunde k 
+    WHERE p.PersonId = k.PersonId AND Nachname = "Hopf" AND Vorname = "Samuel");
 
 -- Buchung erstellen
 SET @NeueBuchungId = (SELECT max(BuchungId) + 1 FROM Buchung);
@@ -35,3 +38,17 @@ SELECT z.ZimmerId FROM Zimmer z
             AND b.BuchungId = zb.BuchungId
 		)
 	LIMIT 1;
+    
+SELECT z.ZimmerId
+	FROM Zimmer z
+    LEFT JOIN ZimmerBelegung zb ON (z.ZimmerId = zb.ZimmerId)
+    JOIN ZimmerTyp zt ON (z.ZimmerTypId = zt.ZimmerTypId)
+    JOIN BettenTyp bt ON (zt.BettenTypId = bt.BettenTypId)
+    WHERE bt.AnzahlPersonen = 2
+    AND NOT EXISTS (
+		SELECT b.BuchungId 
+			FROM Buchung b
+            WHERE b.BuchungId = zb.BuchungId
+            AND 1)
+        
+        
