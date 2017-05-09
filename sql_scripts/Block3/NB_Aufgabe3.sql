@@ -5,7 +5,7 @@ Die Abfrage soll für eine Buchung für ein Doppelzimmer, sowie für ein Anreise
 Identifizieren Sie alle Testfälle, welche in Ihren Testdaten vorhanden sein müssen.
 Dokumentieren Sie.
 */
-use hotel;
+USE hotel;
 -- beliebiges Datum
 SET @AnreiseDatum = '2017-08-01';
 SET @AbreiseDatum = '2017-08-07';    
