@@ -29,4 +29,14 @@ AND zb.BuchungId = b.BuchungId
 AND b.BuchungAnfrageId = ba.BuchungAnfrageId
 AND ba.ReiseunternehmenId = r.ReiseunternehmenId
 AND r.FirmaId = f.FirmaId
-AND ba.Storno = false
+AND ba.Storno = false;
+
+
+SELECT ba.BuchungAnfrageId
+, f.FirmenName
+, ba.AnzahlPersonen
+, b.BuchungId
+FROM BuchungAnfrage ba
+JOIN Reiseunternehmen r ON (ba.ReiseunternehmenId = r.ReiseunternehmenId)
+JOIN Firma f ON (r.FirmaId = f.FirmaId)
+LEFT JOIN Buchung b ON (ba.BuchungAnfrageId = b.BuchungAnfrageId)
