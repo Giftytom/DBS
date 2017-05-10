@@ -70,6 +70,6 @@ JOIN ZimmerBelegungPerson zbp ON (zb.ZimmerBelegungId = zbp.ZimmerBelegungId)
 -- Optional
 -- WHERE year(b.AnreiseDatum) = 2017 -- Variable im Programm
 -- Zahl kann auch entsprechend erhöht werden (Variable im Programm)
-GROUP BY Jahr, f.FirmenName ) u) > 20;
+GROUP BY Jahr, f.FirmenName ) u) > 1;
 
 	 

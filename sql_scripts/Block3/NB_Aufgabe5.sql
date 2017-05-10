@@ -1,15 +1,32 @@
 /*
-Erstellen Sie eine SQL-Abfrage, mit welcher die folgende Anforderung von Luzius erfüllt werden kann:
+Erstellen Sie eine SQL-Abfrage, mit welcher die folgende Anforderung von Luzius erfÃ¼llt werden kann:
 
-Aurelias Bemerkung zur Verfügbarkeitsanfrage:
+Aurelias Bemerkung zur VerfÃ¼gbarkeitsanfrage:
 
-Ich möchte nochmals darauf hinweisen, dass ich eine sehr präzise Liste führe, welche mir Auskunft darüber gibt, 
-wieviele Verfügbarkeitsanfragen zu einer Buchung führen. So kann ich bei der Disposition besser abschätzen, 
-mit welcher Wahrscheinlichkeit eine Anfrage eines Reisebüros zu einer Buchung führt.
+Ich mÃ¶chte nochmals darauf hinweisen, dass ich eine sehr prÃ¤zise Liste fÃ¼hre, welche mir Auskunft darÃ¼ber gibt, 
+wieviele VerfÃ¼gbarkeitsanfragen zu einer Buchung fÃ¼hren. So kann ich bei der Disposition besser abschÃ¤tzen, 
+mit welcher Wahrscheinlichkeit eine Anfrage eines ReisebÃ¼ros zu einer Buchung fÃ¼hrt.
 
-Die Abfrage soll alle Hotelgäste auflisten mit Name, Vorname für welche diese Anforderung zutrifft.
+Die Abfrage soll alle HotelgÃ¤ste auflisten mit Name, Vorname fÃ¼r welche diese Anforderung zutrifft.
 
-Identifizieren Sie alle Testfälle, welche in Ihren Testdaten vorhanden sein müssen.
+Identifizieren Sie alle TestfÃ¤lle, welche in Ihren Testdaten vorhanden sein mÃ¼ssen.
 
 Dokumentieren Sie.
 */
+USE hotel;
+
+SELECT p.Nachname
+, p.Vorname
+, b.BuchungAnfrageId
+, ba.Reisegruppe
+, ba.AnzahlPersonen
+-- , r.ReiseunternehmenId
+, f.FirmenName
+FROM ZimmerBelegungPerson zbp, ZimmerBelegung zb, Buchung b, Person p, BuchungAnfrage ba, Reiseunternehmen r, Firma f
+WHERE zbp.PersonId = p.PersonId
+AND zbp.ZimmerBelegungId = zb.ZimmerBelegungId
+AND zb.BuchungId = b.BuchungId
+AND b.BuchungAnfrageId = ba.BuchungAnfrageId
+AND ba.ReiseunternehmenId = r.ReiseunternehmenId
+AND r.FirmaId = f.FirmaId
+AND ba.Storno = false
