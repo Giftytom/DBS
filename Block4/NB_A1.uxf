@@ -38,22 +38,6 @@ Bettenanzahl: 2</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>540</x>
-      <y>520</y>
-      <w>180</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>Auflistung freie Zimmer
-
-&lt;Tabelle Zimmer&gt;
-
---Selektieren eines 
-Zimmers aus Tabelle--</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>170</x>
@@ -87,34 +71,21 @@ Submit
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>710</x>
-      <y>290</y>
-      <w>260</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>Anzeige Freie Zimmer
-symbol=substate
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>200</x>
       <y>450</y>
       <w>30</w>
-      <h>120</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
       <x>190</x>
-      <y>540</y>
+      <y>490</y>
       <w>40</w>
       <h>50</h>
     </coordinates>
@@ -143,7 +114,7 @@ mit Informationen</panel_attributes>
       <h>100</h>
     </coordinates>
     <panel_attributes>Merke ZimmerId,
-teste og noch frei,
+teste ob noch frei,
 berechne neue BuchungId
 Buche Zimmer (Insert 
 INTO Buchung und Zimmer-
@@ -154,7 +125,7 @@ Belegung)</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>130</x>
-      <y>640</y>
+      <y>570</y>
       <w>210</w>
       <h>100</h>
     </coordinates>
@@ -170,22 +141,57 @@ Submit</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>200</x>
-      <y>580</y>
+      <y>530</y>
       <w>30</w>
-      <h>80</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>400</x>
-      <y>650</y>
+      <x>360</x>
+      <y>680</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>Update</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>150</x>
+      <y>830</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>state</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>190</x>
+      <y>720</y>
+      <w>40</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>type=decision
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>660</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Kunde vorhanden?</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
 </diagram>

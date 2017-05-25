@@ -63,10 +63,53 @@ DELETE FROM ZimmerBelegung WHERE ZimmerBelegungId = @ZimmerBelegungId;
 DELETE FROM Buchung WHERE BuchungId = @BuchungId;
 
 -- Definitive Belegung
--- Falls Kunde noch nicht in unserer DB, Kunde hinzufügen
+SET @NachNameExample = "Andre";
+-- Kunde suchen
+SELECT k.KundeId, p.Nachname, p.Vorname, p.Geburtsdatum
+	FROM Kunde k, Person p
+    WHERE k.PersonId = p.PersonId
+    AND p.Nachname LIKE @NachNameExample;
+-- Selektiere Kunde und merke KundeId
+SET @KundeId = 2364;
 
-SET @KundeId = 2364
--- Falls Kunde schon vorhanden
+-- Falls Kunde noch nicht in unserer DB, Kunde hinzufügen
+SET @PersonId = (SELECT max(PersonId) +1 FROM Person);
+SET @NewKundeId = (SELECT max(KundeId) +1 FROM Kunde);
+SET @EMailId = (SELECT max(EmailId) +1 FROM EMail);
+
+SET @Vorname = "Christoph";
+SET @Nachname = "Frei";
+SET @GebDatum = "1982-09-21";
+SET @Geschlecht = "m";
+SET @EMail = "chr.frei@gmx.ch";
+-- Eventuell auch weitere Adress-Eingaben
+-- Insert Person und anschliessend Kunde
+INSERT INTO Person (PersonId, Vorname, Nachname, Geburtsdatum, Geschlecht) VALUES (@PersonId, @Vorname, @Nachname, @Geburtsdatum, @Geschlecht);
+INSERT INTO EMail (EMailId, EMailAdresse, PersonId) VALUES (@EmailId, @EMail, @PersonId);
+INSERT INTO Kunde (KundeId, PersonId) VALUES(@NewKundeId, @PersonId);
+
+SET @KundeId = @NewKundeId;
+
+
+-- Füge KundeId der Buchung hinzu
 UPDATE Buchung SET KundeId = @KundeId WHERE BuchungId = @BuchungId;
+-- Commit - Buchung abgeschlossen
+
+-- Zusammenfassung Buchung darstellen
+SELECT b.AnreiseDatum
+, b.AbreiseDatum
+, z.ZimmerId, ZimmerNummer AS 'Nummer'
+, Stockwerk, t.Name AS 'Trakt'
+, CASE Alpenblick WHEN TRUE THEN 'ja' ELSE 'nein' END AS 'Alpenblick'
+, CASE Whirlpool WHEN TRUE THEN 'ja' ELSE 'nein' END AS 'Whirlpool'
+, CASE Bad WHEN TRUE THEN 'Bad' ELSE 'Dusche' END AS 'Ausstattung'
+, zt.Bezeichnung AS 'Typ', bt.Bezeichnung AS 'Bett'
+, bt.AnzahlPersonen AS 'Personen'
+	FROM Buchung b
+    JOIN ZimmerBelegung zb ON (b.BuchungId = zb.BuchungId)
+    JOIN Zimmer z ON (zb.ZimmerId = z.ZimmerId)
+    JOIN ZimmerTyp zt ON (z.ZimmerTypId = zt.ZimmerTypId)
+    JOIN BettenTyp bt ON (zt.BettenTypId = bt.BettenTypId)
+    WHERE b.BuchungId = @BuchungId
 
 -- Personen werden erst bei Checkin ZimmerBelegungPerson hinzugefügt
