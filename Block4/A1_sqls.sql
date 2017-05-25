@@ -1,6 +1,8 @@
 /*
 SQL-Abfragen bei Zimmerbuchung
 */
+use hotel;
+
 SET @MitarbeiterId = 3400; -- Vom Login des Mitarbeiters
 SET @AnreiseDatum = "2017-07-01";
 SET @AbreiseDatum = "2017-07-07";
@@ -110,6 +112,7 @@ SELECT b.AnreiseDatum
     JOIN Zimmer z ON (zb.ZimmerId = z.ZimmerId)
     JOIN ZimmerTyp zt ON (z.ZimmerTypId = zt.ZimmerTypId)
     JOIN BettenTyp bt ON (zt.BettenTypId = bt.BettenTypId)
-    WHERE b.BuchungId = @BuchungId
+    WHERE b.BuchungId = @BuchungId;
 
 -- Personen werden erst bei Checkin ZimmerBelegungPerson hinzugefügt
+-- ggf. Begleitperson als Person erfassen (wie oben)
