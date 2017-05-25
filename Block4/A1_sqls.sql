@@ -1,7 +1,7 @@
 /*
 SQL-Abfragen bei Zimmerbuchung
 */
-
+SET @MitarbeiterId = 3400; -- Vom Login des Mitarbeiters
 SET @AnreiseDatum = "2017-07-01";
 SET @AbreiseDatum = "2017-07-07";
 SET @AnzahlPersonen = 2;
@@ -26,7 +26,7 @@ SELECT DISTINCT z.ZimmerId, ZimmerNummer AS 'Nummer', Stockwerk, t.Name AS 'Trak
                        AND b.BuchungId = zb.BuchungId
 );
 
-
+-- Ein Zimmer kann selektiert werden. Die ZimmerId wird dabei im Programm gemerkt
 SET @ZimmerID = 4920;
 
 -- Anschliessend wird ein Zimmer ausgewählt
@@ -44,4 +44,29 @@ SET @Zimmer = (SELECT DISTINCT z.ZimmerId
     )
 	);
 
-SELECT @Zimmer;
+-- SELECT @Zimmer;  wird im Programm abgefangen, wenn leer, dann zurück und Hinweis, dass Zimmer bereits gebucht wurde
+
+-- Buchungs des Zimmers
+-- setze neue BuchungId -> Auto-Increment wäre auch eine Möglichkeit
+SET @BuchungId = (SELECT max(b.BuchungId) +1
+	FROM Buchung b);
+-- setze ZimmerBelegungId -> Auto-Increment ...
+SET @ZimmerBelegungId = (SELECT max(zb.ZimmerBelegungId) +1
+	FROM ZimmerBelegung zb);
+    
+INSERT INTO Buchung (BuchungId, MitarbeiterId, AnreiseDatum, AbreiseDatum) VALUES(@BuchungId, @MitarbeiterId, @AnreiseDatum, @AbreiseDatum);
+INSERT INTO ZimmerBelegung (ZimmerBelegungId, ZimmerId, BuchungId) VALUES(@ZimmerBelegungId, @ZimmerId, @BuchungId);
+-- Zimmer sind somit blockiert
+
+-- Falls Buchungsvorgang abgebrochen wird "Cancel", bzw, Buchung gelöscht werden soll vor entgültigem Abschluss der Buchung - es wird kein Storno gemacht
+DELETE FROM ZimmerBelegung WHERE ZimmerBelegungId = @ZimmerBelegungId;
+DELETE FROM Buchung WHERE BuchungId = @BuchungId;
+
+-- Definitive Belegung
+-- Falls Kunde noch nicht in unserer DB, Kunde hinzufügen
+
+SET @KundeId = 2364
+-- Falls Kunde schon vorhanden
+UPDATE Buchung SET KundeId = @KundeId WHERE BuchungId = @BuchungId;
+
+-- Personen werden erst bei Checkin ZimmerBelegungPerson hinzugefügt
