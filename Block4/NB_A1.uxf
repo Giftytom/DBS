@@ -23,7 +23,7 @@
     <panel_attributes>Zimmersuche
 
 von: [] bis: []
-Bettenanzahl: []</panel_attributes>
+Bettenanzahl: 2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -40,7 +40,7 @@ Bettenanzahl: []</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>80</x>
+      <x>540</x>
       <y>520</y>
       <w>180</w>
       <h>120</h>
@@ -59,16 +59,16 @@ Zimmers aus Tabelle--</panel_attributes>
       <x>170</x>
       <y>200</y>
       <w>30</w>
-      <h>90</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLState</id>
     <coordinates>
       <x>120</x>
-      <y>330</y>
+      <y>320</y>
       <w>190</w>
       <h>140</h>
     </coordinates>
@@ -78,7 +78,7 @@ Zimmer
 Tabelle mit Zimmer-
 informationen
 --
-Zum Selektieren
+Selektieren
 (eines Zimmers) 
 -.
 valign=top
@@ -89,8 +89,8 @@ Submit
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>610</x>
-      <y>370</y>
+      <x>710</x>
+      <y>290</y>
       <w>260</w>
       <h>140</h>
     </coordinates>
@@ -103,20 +103,20 @@ symbol=substate
     <id>Relation</id>
     <coordinates>
       <x>200</x>
-      <y>460</y>
-      <w>170</w>
-      <h>50</h>
+      <y>450</y>
+      <w>30</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>160</x>
-      <y>260</y>
+      <x>190</x>
+      <y>540</y>
       <w>40</w>
-      <h>40</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>type=decision</panel_attributes>
     <additional_attributes/>
@@ -124,12 +124,68 @@ symbol=substate
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>270</x>
-      <y>260</y>
+      <x>280</x>
+      <y>230</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>SELECT auf 
+freie Zimmer
+mit Informationen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>380</x>
+      <y>380</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Merke ZimmerId,
+teste og noch frei,
+berechne neue BuchungId
+Buche Zimmer (Insert 
+INTO Buchung und Zimmer-
+Belegung)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>130</x>
+      <y>640</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>VorabBuchung/Reservierung 
+erfolgreich,
+Eingabe weiterer 
+PersonenAngaben
+--
+Submit</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>580</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>400</x>
+      <y>650</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>state</panel_attributes>
+    <panel_attributes>Update</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
