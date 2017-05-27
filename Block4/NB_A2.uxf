@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>180</x>
+      <y>40</y>
+      <w>280</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>View Buchung Reisgruppe
+
+
+Auswahl einer Anfrage
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>30</x>
+      <y>50</y>
+      <w>20</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>30</x>
+      <y>50</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>170</x>
+      <y>450</y>
+      <w>280</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>state</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>180</x>
+      <y>200</y>
+      <w>280</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Gegenüberstellung freie Zimmer
+Reisegruppe im gewünschten
+Zeitraum</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>510</x>
+      <y>40</y>
+      <w>270</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>[Select aller offenen 
+Reisegruppen/Anfragen]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>110</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>520</x>
+      <y>190</y>
+      <w>170</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>[Select freie Zimmer 
+im Zeitraum]</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
