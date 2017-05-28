@@ -9,8 +9,8 @@
       <w>280</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>View Buchung Reisgruppe
-
+    <panel_attributes>Darstellung Buchungsanfragen
+von Reisegruppen
 
 Auswahl einer Anfrage
 </panel_attributes>
@@ -66,7 +66,7 @@ Zeitraum</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>510</x>
+      <x>560</x>
       <y>40</y>
       <w>270</w>
       <h>50</h>
@@ -89,7 +89,7 @@ Reisegruppen/Anfragen]</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>520</x>
+      <x>580</x>
       <y>190</y>
       <w>170</w>
       <h>70</h>
@@ -125,7 +125,7 @@ zum Belegen/zuweisen</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>510</x>
+      <x>570</x>
       <y>310</y>
       <w>220</w>
       <h>100</h>
