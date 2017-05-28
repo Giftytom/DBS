@@ -102,7 +102,7 @@ im Zeitraum]</panel_attributes>
     <id>UMLState</id>
     <coordinates>
       <x>220</x>
-      <y>330</y>
+      <y>380</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -116,17 +116,18 @@ zum Belegen/zuweisen</panel_attributes>
     <coordinates>
       <x>300</x>
       <y>270</y>
-      <w>30</w>
-      <h>80</h>
+      <w>140</w>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <panel_attributes>lt=-&gt;
+genügend Platz?</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
-      <y>310</y>
+      <x>560</x>
+      <y>390</y>
       <w>220</w>
       <h>100</h>
     </coordinates>
@@ -151,12 +152,12 @@ ZimmerBelegung]</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>300</x>
-      <y>380</y>
+      <y>430</y>
       <w>30</w>
-      <h>100</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -236,5 +237,84 @@ zur Buchung (ink. Zeitraum)]</panel_attributes>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>290</x>
+      <y>310</y>
+      <w>40</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>340</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>430</x>
+      <y>320</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Stornierung
+Buchunganfrage</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>320</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>610</x>
+      <y>330</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>[Update 
+BuchungAnfrage]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>510</x>
+      <y>400</y>
+      <w>20</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>360</y>
+      <w>40</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;20.0;50.0</additional_attributes>
   </element>
 </diagram>
