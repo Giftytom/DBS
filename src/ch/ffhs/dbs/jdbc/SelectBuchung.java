@@ -1,10 +1,15 @@
 package ch.ffhs.dbs.jdbc;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -16,42 +21,100 @@ import java.util.Scanner;
  * Created by Thomas Andre on 28.05.17.
  */
 public class SelectBuchung {
+	private String dbDriver;
+	private String connectionString;
+	private String user;
+	private String passwd;
+	private Connection connection;
 
-	public static void main(String[] args) {
-		String dbDriver = "com.mysql.jdbc.Driver";
+	public SelectBuchung() {
+		setConfig();
+	}
 
+	/**
+	 * Set initial parameters from Configfile
+	 */
+	protected void setConfig() {
+		Properties properties = new Properties();
+		InputStream input = null;
 		try {
-			Class.forName(dbDriver).newInstance();
+			input = new FileInputStream("DB_NB4.properties");
+			properties.load(input);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		dbDriver = properties.getProperty("dbDriver");
+		connectionString = properties.getProperty("connection");
+		user = properties.getProperty("user");
+		passwd = properties.getProperty("passwd");
+		
+	}
+	
+	public String getDbDriver(){
+		return dbDriver;
+	}
+	
+	public String getConnectionString(){
+		return connectionString;
+	}
+	
+	public String getUser(){
+		return user;
+	}
+	
+	public String getPasswd(){
+		return passwd;
+	}
+	
+	public Connection getConnection(){
+		return connection;
+	}
+	
+	public void buildUpConnection() throws SQLException{
+		try {
+			Class.forName(getDbDriver()).newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		String connectString = "jdbc:mysql://localhost:3307/hotel?verifyServerCertificate=false&useSSL=false";
-		String user = "root";
-		String password = "DBS";
-		try {
-			Connection con = DriverManager.getConnection(connectString, user, password);
-			String selectString = "SELECT b.BuchungId AS 'id', b.AnreiseDatum AS 'Anreise' "
-					+ ", b.AbreiseDatum AS 'Abreise', b.Storno AS 'Storno' FROM Buchung b "
-					+ "WHERE b.AbreiseDatum > ? AND b.AnreiseDatum < ?";
-			PreparedStatement select = con.prepareStatement(selectString);
+		connection = DriverManager.getConnection(getConnectionString(), getUser(), getPasswd());
+	}
 
-			// Eingabe von Datum1 und 2
+	public static void main(String[] args) {
 
-			String datum1 = "";
-			String datum2 = "";
-			/*
-			String datum1 = "2016-09-01";
-			String datum2 = "2017-10-20";
-			*/
-			if (args.length == 2) {
-				datum1 = args[0];
-				datum2 = args[1];
-			} else {
-				System.out.println("Call Programm mit 2 parameters, Datum1 und Datum2");
-				System.exit(0);
-			}
-
+		String datum1 = "";
+		String datum2 = "";
+		/*
+		 * String datum1 = "2016-09-01"; String datum2 = "2017-10-20";
+		 */
+		if (args.length == 2) {
+			datum1 = args[0];
+			datum2 = args[1];
+		} else {
+			System.out.println("Call Programm mit 2 parameters, Datum1 und Datum2\n\n"
+					+ "e.g. >java SelectBuchung 2016-10-01 2017-11-15   \n\n");
+			System.exit(0);
+		}
+		
+		SelectBuchung sb = new SelectBuchung();
+		String selectString = "SELECT b.BuchungId AS 'id', b.AnreiseDatum AS 'Anreise' "
+				+ ", b.AbreiseDatum AS 'Abreise', b.Storno AS 'Storno' FROM Buchung b "
+				+ "WHERE b.AbreiseDatum > ? AND b.AnreiseDatum < ?";
+		
+		
+		try{
+			sb.buildUpConnection();
+			PreparedStatement select = sb.getConnection().prepareStatement(selectString);
+			// Mit Scanner waere auhc eine Moeglichkeit:
 			// Scanner sc = new Scanner(System.in);
 
 			select.setString(1, datum1);
@@ -70,7 +133,7 @@ public class SelectBuchung {
 
 			res.close();
 			select.close();
-			con.close();
+			sb.getConnection().close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
