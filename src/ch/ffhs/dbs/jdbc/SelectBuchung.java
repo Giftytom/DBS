@@ -1,7 +1,6 @@
 package ch.ffhs.dbs.jdbc;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.Scanner;
+
 
 /**
  * Erstellen Sie eine Java/JDBC-Programm, mit welchem alle Buchungen einer

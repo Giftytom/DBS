@@ -15,9 +15,9 @@ public class Transaktionen {
 			e.printStackTrace();
 		} 
 		// Credentials in produktiven Programmen in ein Konfigurationsfile auslagern
-		String connectString = "jdbc:mysql://localhost:3306/inventar?verifyServerCertificate=false&useSSL=false";
+		String connectString = "jdbc:mysql://localhost:3307/inventar?verifyServerCertificate=false&useSSL=false";
 		String user = "root";
-		String password = "dbt";
+		String password = "DBS";
 		try {
 			Connection con = 	DriverManager.getConnection(connectString, 	user, password);
 			
