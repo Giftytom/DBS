@@ -1,0 +1,3 @@
+-- setze ZimmerBelegungId -> Auto-Increment ...
+SET @ZimmerBelegungId = (SELECT max(zb.ZimmerBelegungId) +1
+	FROM ZimmerBelegung zb);
