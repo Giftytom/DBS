@@ -3,11 +3,10 @@ package ch.ffhs.dbs.jdbc;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 
 
@@ -88,6 +87,12 @@ public class SelectBuchung {
 		connection = DriverManager.getConnection(getConnectionString(), getUser(), getPasswd());
 	}
 
+	public void closeConnection() throws SQLException{
+		if (connection != null){
+			connection.close();
+		}
+	}
+
 	public static void main(String[] args) {
 
 		String datum1 = "";
@@ -113,11 +118,25 @@ public class SelectBuchung {
 		try{
 			sb.buildUpConnection();
 			PreparedStatement select = sb.getConnection().prepareStatement(selectString);
-			// Mit Scanner waere auhc eine Moeglichkeit:
+			// Mit Scanner waere auch eine Moeglichkeit:
 			// Scanner sc = new Scanner(System.in);
 
-			select.setString(1, datum1);
-			select.setString(2, datum2);
+            // Sicherstellen, dass wir den String im richtigen Format erhalten und als Date-Objekt parsen koennen
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = null;
+            Date date2 = null;
+            try {
+                System.out.println(df.parse(datum1));
+                date1 = new Date(df.parse(datum1).getTime());
+                date2 = new Date(df.parse(datum2).getTime());
+
+            }catch (ParseException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
+
+            select.setDate(1, date1);
+            select.setDate(2, date2);
 
 			ResultSet res = select.executeQuery();
 
@@ -132,7 +151,7 @@ public class SelectBuchung {
 
 			res.close();
 			select.close();
-			sb.getConnection().close();
+			sb.closeConnection();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
