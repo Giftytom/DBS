@@ -3,9 +3,7 @@
  */
 package ch.ffhs.dbs.jdbc;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -82,7 +80,7 @@ public class JdbcGelb {
 		return connection;
 	}
 
-	public String getMitarbeiterID() {return mitarbeiterID; }
+	public int getMitarbeiterID() {return mitarbeiterID; }
 
 	public Date getAnreiseDatum() {return anreiseDatum;}
 
@@ -100,8 +98,8 @@ public class JdbcGelb {
 	public void setAnUndAbreiseDatum(String anreise, String abreise) {
 		DateFormat df  = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			anreiseDatum = new Date(df.parse(anreise));
-			abreiseDatum = new Date(df.parse(abreise));
+			anreiseDatum = new Date(df.parse(anreise).getTime());
+			abreiseDatum = new Date(df.parse(abreise).getTime());
 		}catch (ParseException e){
 			System.out.println("Could not parse Anreise- und Abreise Datum Strings");
 			e.printStackTrace();
@@ -188,7 +186,7 @@ public class JdbcGelb {
     private Integer getIdFromSelect(PreparedStatement statement, String row) throws SQLException{
         ResultSet rs = statement.executeQuery();
         Integer id = null;
-        while rs.next(){
+        while (rs.next()){
             id = rs.getInt("row");
         }
         rs.close();
@@ -224,5 +222,31 @@ public class JdbcGelb {
         }
         return success;
     }
+
+    String getSQLFromFile(String file){
+        BufferedReader reader = null;
+        String         line = null;
+        StringBuilder  stringBuilder = new StringBuilder();
+        String         ls = System.getProperty("line.separator");
+
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            while((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+
+
+        } catch (IOException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        return stringBuilder.toString();
+	}
 
 }
