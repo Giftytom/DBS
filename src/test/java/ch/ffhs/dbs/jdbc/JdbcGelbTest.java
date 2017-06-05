@@ -20,7 +20,7 @@ public class JdbcGelbTest {
 
     @Test
     public void testGetSQLFromFile(){
-        String filecontent = jdbcGelb.getSQLFromFile("ch.ffhs.dbs.jdbc/listFreieDoppelZimmer.sql");
+        String filecontent = jdbcGelb.getSQLFromFile("sqls/listFreieDoppelZimmer.sql");
         System.out.println(filecontent);
         Assert.assertTrue(filecontent.startsWith("SELECT "));
     }
