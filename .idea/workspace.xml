@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a54407fd-2f66-45e7-b5bd-29fac5044307" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Resources/listFreieDoppelZimmer.sql" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Bilder.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Bilder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/JdbcGelb.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" afterPath="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/SelectBuchung.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/SelectBuchung.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Test1.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Test1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Test2.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Test2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Test2MitParameter.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Test2MitParameter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Test3.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Test3.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Test3Insert.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Test3Insert.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/Transaktionen.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/Transaktionen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/VerbindungAufbauen.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/VerbindungAufbauen.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ch/ffhs/dbs/jdbc/package-info.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/package-info.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/Resources/listFreieDoppelZimmer.sql" afterPath="$PROJECT_DIR$/src/main/resources/ch.ffhs.dbs.jdbc/listFreieDoppelZimmer.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DBS.iml" afterPath="$PROJECT_DIR$/DBS.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" afterPath="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -67,7 +54,7 @@
         </entry>
       </file>
       <file leaf-file-name="listFreieDoppelZimmer.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Resources/listFreieDoppelZimmer.sql">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/ch.ffhs.dbs.jdbc/listFreieDoppelZimmer.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -89,8 +76,8 @@
       <file leaf-file-name="JdbcGelbTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+            <state relative-caret-position="210">
+              <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
               <folding>
                 <element signature="e#196#197#0" expanded="true" />
                 <element signature="e#237#238#0" expanded="true" />
@@ -273,7 +260,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ch.ffhs.dbs.jdbc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -324,6 +315,7 @@
       <recent name="$PROJECT_DIR$/src/main/Resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/ch.ffhs.dbs.jdbc" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
   </component>
@@ -980,7 +972,7 @@
       <workItem from="1495992729994" duration="1401000" />
       <workItem from="1496557789988" duration="16000" />
       <workItem from="1496588990274" duration="9373000" />
-      <workItem from="1496643208602" duration="1607000" />
+      <workItem from="1496643208602" duration="1889000" />
     </task>
     <task id="LOCAL-00001" summary="some trials with intellij">
       <created>1493657152854</created>
@@ -1010,20 +1002,35 @@
       <option name="project" value="LOCAL" />
       <updated>1496598696267</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="it goes on">
+      <created>1496644832973</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1496644832973</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
     <history-entry file="JdbcGelbTest - 2017.06.05 at 08h 39m 02s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.05 at 08h 41m 17s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.05 at 08h 41m 46s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.05 at 08h 44m 02s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16938000" />
+    <option name="totallyTimeSpent" value="17220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1046,7 +1053,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1068,7 +1075,8 @@
     <MESSAGE value="some trials with intellij" />
     <MESSAGE value="intellij auto" />
     <MESSAGE value="Aufgabe3 almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aufgabe3 almost done" />
+    <MESSAGE value="it goes on" />
+    <option name="LAST_COMMIT_MESSAGE" value="it goes on" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1396,7 +1404,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Resources/listFreieDoppelZimmer.sql">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ch.ffhs.dbs.jdbc/listFreieDoppelZimmer.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1427,8 +1435,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+        <state relative-caret-position="210">
+          <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
           <folding>
             <element signature="e#196#197#0" expanded="true" />
             <element signature="e#237#238#0" expanded="true" />

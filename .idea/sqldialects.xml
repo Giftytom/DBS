@@ -2,6 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql_scripts/Block3/NB_Aufgabe4.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/Resources/listFreieDoppelZimmer.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/ch.ffhs.dbs.jdbc/listFreieDoppelZimmer.sql" dialect="MySQL" />
   </component>
 </project>
