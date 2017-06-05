@@ -1,0 +1,1 @@
+SELECT max(EmailId) +1 FROM EMail;

@@ -1,0 +1,1 @@
+INSERT INTO Kunde (KundeId, PersonId) VALUES(?, ?);

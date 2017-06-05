@@ -1,0 +1,1 @@
+DELETE FROM Buchung WHERE BuchungId = ?;

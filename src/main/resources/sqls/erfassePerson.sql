@@ -1,0 +1,1 @@
+INSERT INTO Person (PersonId, Vorname, Nachname, Geburtsdatum, Geschlecht) VALUES (?, ?, ?, ?, ?);

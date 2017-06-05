@@ -1,0 +1,1 @@
+UPDATE Buchung SET KundeId = ? WHERE BuchungId = ?;

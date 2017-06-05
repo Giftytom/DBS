@@ -1,0 +1,1 @@
+INSERT INTO EMail (EMailId, EMailAdresse, PersonId) VALUES (?, ?, ?);

@@ -24,6 +24,8 @@ public class JdbcGelb {
 	private int mitarbeiterID;
 	private Date anreiseDatum;
 	private Date abreiseDatum;
+	private Integer buchungId;
+	private Integer kundeId;
 
 	/**
 	 * Constructor
@@ -86,6 +88,20 @@ public class JdbcGelb {
 
 	public Date getAbreiseDatum() {return getAbreiseDatum();}
 
+	void setBuchungId(Integer id){
+	    buchungId = id;
+    }
+    public Integer getBuchungId(){
+	    return buchungId;
+    }
+
+    void setKundeId(Integer id){
+        kundeId = id;
+    }
+    public Integer getKundeId(){
+        return kundeId;
+    }
+
 	public void setMitarbeiterID(int mitarbeiterID) {
 		this.mitarbeiterID = mitarbeiterID;
 	}
@@ -104,7 +120,7 @@ public class JdbcGelb {
 			System.out.println("Could not parse Anreise- und Abreise Datum Strings");
 			e.printStackTrace();
 		}
-		// man koente noch pruefen, ob AnreiseDatum aelter als das AbreiseSatum ist und sonst vertauschen
+		// man koente noch pruefen, ob AnreiseDatum aelter als das AbreiseSatum ist
 	}
 
 	/**
@@ -145,10 +161,15 @@ public class JdbcGelb {
         }
 	}
 
+	/**
+	 * Macht eine SQL-Abfrage und returniert eine Liste freier Doppelzimmer
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Map<String, Object>> getFreieDoppelZimmer() throws SQLException {
         List<Map<String, Object>> data = null;
 	    buildUpConnection();
-	    String freieZimmer = "";
+	    String freieZimmer = getContentFromFile("src/main/resources/sqls/listFreieDoppelZimmer.sql");
         PreparedStatement stmt = getConnection().prepareStatement(freieZimmer);
         stmt.setDate(1, abreiseDatum);
         stmt.setDate(2, anreiseDatum);
@@ -156,6 +177,22 @@ public class JdbcGelb {
         closeConnection();
         return data;
 
+    }
+
+    /**
+     * Summary der Hotelbuchung
+     * @return
+     * @throws SQLException
+     */
+    public List<Map<String, Object>> getSummary() throws SQLException {
+        List<Map<String, Object>> data = null;
+        buildUpConnection();
+        String selSummary = getContentFromFile("src/main/resources/sqls/ZusammenfassungBuchung.sql");
+        PreparedStatement stmt = getConnection().prepareStatement(selSummary);
+        stmt.setInt(1, buchungId);
+        data = doSelectRLock(stmt);
+        closeConnection();
+        return data;
     }
 
     private List<Map<String, Object>> doSelectRLock(PreparedStatement statement) throws SQLException{
@@ -183,47 +220,258 @@ public class JdbcGelb {
         return resultList;
     }
 
-    private Integer getIdFromSelect(PreparedStatement statement, String row) throws SQLException{
-        ResultSet rs = statement.executeQuery();
+    /**
+     * Erhalte die naechste iD
+     * @param statement
+     * @return
+     * @throws SQLException
+     */
+    public Integer getIdFromSelect(PreparedStatement statement) throws SQLException{
+	    ResultSet rs = statement.executeQuery();
         Integer id = null;
         while (rs.next()){
-            id = rs.getInt("row");
+            id = rs.getInt(1);
         }
         rs.close();
 	    return id;
     }
+
     /**
-     * Funktioniert so nicht, weil zu viel Logik
-     * @param preparedStatements
+     * books the room and sets the bookingId
+     * @param zimmerId
      * @return
      */
-    private boolean doWriteXLock(ArrayList<PreparedStatement> preparedStatements){
+    public boolean bookARoom(Integer zimmerId){
         boolean success = true;
-        //Ganz streng!
         try {
+            buildUpConnection();
+            // special settings, for lock netweder geht die ganze Buchung oder nichts
             connection.setAutoCommit(false);
             connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-            preparedStatements.forEach(statement -> {
-                try {
-                    statement.executeUpdate();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            });
+            //Here the sequence of SQLs which have to happen or completely rolled back
+            String pruefeZimmer = getContentFromFile("src/main/resources/sqls/pruefeZimmernochFrei.sql");
+            PreparedStatement psPruefe = connection.prepareStatement(pruefeZimmer);
+            psPruefe.setInt(1, zimmerId);
+            Integer zimmerId = getIdFromSelect(psPruefe);
+            //vorzeitiger Abbruch, Zimmer nicht mehr frei
+            if (zimmerId == null)
+                return false;
+
+            // get Selects
+            String selBuchungId = getContentFromFile("src/main/resources/sqls/erhalteBuchId.sql");
+            String selZimBelId = getContentFromFile("src/main/resources/sqls/erhalteZimmerBelegungId.sql");
+            String buchung = getConnectionString("src/main/resources/sqls/Buchung.sql");
+            String zimmerBel = getConnectionString("src/main/resources/sqls/Buchung.sql");
+
+            // get further info
+            PreparedStatement psBuchungId = connection.prepareStatement(selBuchungId);
+            Integer buchungId = getIdFromSelect(psBuchungId);
+            PreparedStatement psZimBelId = connection.prepareStatement(selZimBelId);
+            Integer zimBelId = getIdFromSelect(psZimBelId);
+
+            // Do the Buchung
+            PreparedStatement psBuchung = connection.prepareStatement(buchung);
+            psBuchung.setInt(1, buchungId);
+            psBuchung.setDate(2, getAnreiseDatum());
+            psBuchung.setDate(3, getAbreiseDatum());
+            psBuchung.executeUpdate();
+
+            PreparedStatement psZimBel = connection.prepareStatement(zimmerBel);
+            psZimBel.setInt(1, zimBelId);
+            psZimBel.setInt(2, buchungId);
+            psZimBel.setInt(3, zimmerId);
             connection.commit();
+            // keep the buchungId after success
+            setBuchungId(buchungId);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+            connection.rollback();
+            success = false;
+        }finally {
+            try{
+                closeConnection();
+            } catch (SQLException e){
+                // do nothing
+            }
+        }
+
+
+        return success;
+    }
+
+    /**
+     * Loesche Buchung anhand von BuchungId
+     */
+    public void deleteBooking(){
+
+        try {
+            buildUpConnection();
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            String delZimBel = getContentFromFile("src/main/resources/sqls/deleteZimmerBelegung.sql");
+            String delBuchung = getContentFromFile("src/main/resources/sqls/deleteBuchung.sql");
+
+            PreparedStatement psDelZimBel = connection.prepareStatement(delZimBel);
+            psDelZimBel.setInt(1, getBuchungId());
+            psDelZimBel.executeUpdate();
+
+            PreparedStatement psBuchung = connection.prepareStatement(delBuchung);
+            psBuchung.setInt(1, getBuchungId());
+            psBuchung.executeUpdate();
+
+            connection.commit();
+            setBuchungId(null);
         }catch (SQLException e){
             e.printStackTrace();
-            success = false;
+        }finally {
+            try{
+                closeConnection();
+            } catch (SQLException e){
+                // do nothing
+            }
+        }
+
+    }
+
+
+    /**
+     * Suche alle Kunden anhand vom Nachnamen
+     * @param Name
+     * @return
+     */
+    public List<Map<String, Object>> getKundeIds(String Name){
+        List<Map<String, Object>> data = null;
+        try{
+            buildUpConnection();
+            String selKundeId = getContentFromFile("src/main/resources/sqls/sucheKundeMitNachname.sql");
+            PreparedStatement psSelKunden = connection.prepareStatement(selKundeId);
+            data = doSelectRLock(psSelKunden);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                closeConnection();
+            } catch (SQLException){
+                // Do nothing
+            }
+        }
+        return data;
+    }
+
+    /**
+     * Erfasse Kunden mit Angaben
+     * @param vorname
+     * @param nachname
+     * @param gebDatum
+     * @param geschlecht
+     * @param email
+     * @return KundeId
+     */
+    public Integer erfasseKunde(String vorname, String nachname, String gebDatum, String geschlecht, String email){
+        DateFormat df  = new SimpleDateFormat("yyyy-MM-dd");
+        Date geburtsDatum = null;
+        Integer kundeId = null;
+        try {
+            geburtsDatum = new Date(df.parse(gebDatum).getTime());
+        }catch (ParseException e){
+            System.out.println("Could not parse gebDatum String");
+            e.printStackTrace();
+            return;
+        }
+
+        try{
+            buildUpConnection();
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            String selKundeId = getContentFromFile("src/main/resources/sqls/getKundeId.sql");
+            String selEmailId = getContentFromFile("src/main/resources/sqls/getEmailId.sql");
+            String selPersonId = getContentFromFile("src/main/resources/sqls/getPersonId.sql");
+
+            PreparedStatement psPersonid = connection.prepareStatement(selPersonId);
+            Integer personId = getIdFromSelect(psPersonid);
+
+            PreparedStatement psEmailId = connection.prepareStatement(selEmailId);
+            Integer emailId = getIdFromSelect(psEmailId);
+
+            PreparedStatement psKundeId = connection.prepareStatement(selKundeId);
+            kundeId = getIdFromSelect(psKundeId);
+
+            String insPerson = getContentFromFile("src/main/resources/sqls/erfassePerson.sql");
+            String insEmail = getContentFromFile("src/main/resources/sqls/erfasseEmail.sql");
+            String insKunde = getContentFromFile("src/main/resources/sqls/erfasseKunde.sql");
+
+            PreparedStatement psInsPerson = connection.prepareStatement(insPerson);
+            psInsPerson.setInt(1, personId);
+            psInsPerson.setString(2, vorname);
+            psInsPerson.setString(3, nachname);
+            psInsPerson.setDate(4, geburtsDatum);
+            psInsPerson.setString(5, geschlecht.substring(0,1));
+            psInsPerson.executeUpdate();
+
+            PreparedStatement psInsEmail = connection.prepareStatement(insEmail);
+            psInsEmail.setInt(1, emailId);
+            psInsEmail.setString(2, email);
+            psInsEmail.setInt(3, personId);
+            psInsEmail.executeUpdate();
+
+            PreparedStatement psInsKunde = connection.prepareStatement(insKunde);
+            psInsKunde.setInt(1, kundeId);
+            psInsKunde.setInt(2, personId);
+            psInsKunde.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e){
+            e.printStackTrace();
+            kundeId = null;
             try {
                 connection.rollback();
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
+        }finally {
+            try {
+                closeConnection();
+            } catch (SQLException){
+                // Do nothing
+            }
         }
-        return success;
+        return kundeId;
     }
 
-    String getSQLFromFile(String file){
+    /**
+     * Update Buchung mit KundeId
+     * @param kundeId
+     */
+    public void updateBuchungWithKundeId(Integer kundeId){
+        try{
+            buildUpConnection();
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            String updBuchung = getContentFromFile("src/main/resources/sqls/updateBuchungMitKundeId.sql");
+            PreparedStatement psUpdateBuchung = connection.prepareStatement(updBuchung);
+            psUpdateBuchung.setInt(1, kundeId);
+            psUpdateBuchung.setInt(2, buchungId);
+            psUpdateBuchung.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                closeConnection();
+            } catch (SQLException){
+                // Do nothing
+            }
+        }
+
+    }
+	/**
+	 * Get the Content of the file, the SQL
+	 * @param file
+	 * @return SQL String
+	 */
+	static String getContentFromFile(String file){
         BufferedReader reader = null;
         String         line = null;
         StringBuilder  stringBuilder = new StringBuilder();

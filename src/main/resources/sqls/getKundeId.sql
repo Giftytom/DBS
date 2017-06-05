@@ -1,0 +1,1 @@
+SELECT max(KundeId) +1 FROM Kunde;
