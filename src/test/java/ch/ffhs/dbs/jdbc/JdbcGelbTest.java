@@ -62,14 +62,7 @@ public class JdbcGelbTest {
     public void testBuchungEinZimmer(){
         boolean suc = true;
         jdbcGelb.setAnUndAbreiseDatum("2017-10-01", "2017-10-15");
-        try {
-            suc = jdbcGelb.bookARoom(4920);
-        } catch (SQLException e){
-            e.printStackTrace();
-            suc = false;
-        }
+        suc = jdbcGelb.bookARoom(4920);
         Assert.assertTrue(suc);
-
-
     }
 }

@@ -86,7 +86,7 @@ public class JdbcGelb {
 
 	public Date getAnreiseDatum() {return anreiseDatum;}
 
-	public Date getAbreiseDatum() {return getAbreiseDatum();}
+	public Date getAbreiseDatum() {return abreiseDatum;}
 
 	void setBuchungId(Integer id){
 	    buchungId = id;
@@ -141,10 +141,12 @@ public class JdbcGelb {
 	 * Baue die Verbindung zur DB ab
 	 * @throws SQLException
 	 */
-	public void closeConnection() throws SQLException{
-		if (connection != null){
-			connection.close();
-		}
+	public void closeConnection(){
+		if (connection != null) try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 
     /**
@@ -238,10 +240,10 @@ public class JdbcGelb {
 
     /**
      * books the room and sets the bookingId
-     * @param zimmerId
+     * @param zimId
      * @return
      */
-    public boolean bookARoom(Integer zimmerId){
+    public boolean bookARoom(Integer zimId){
         boolean success = true;
         try {
             buildUpConnection();
@@ -251,17 +253,17 @@ public class JdbcGelb {
             //Here the sequence of SQLs which have to happen or completely rolled back
             String pruefeZimmer = getContentFromFile("src/main/resources/sqls/pruefeZimmernochFrei.sql");
             PreparedStatement psPruefe = connection.prepareStatement(pruefeZimmer);
-            psPruefe.setInt(1, zimmerId);
+            psPruefe.setInt(1, zimId);
             Integer zimmerId = getIdFromSelect(psPruefe);
             //vorzeitiger Abbruch, Zimmer nicht mehr frei
             if (zimmerId == null)
                 return false;
 
             // get Selects
-            String selBuchungId = getContentFromFile("src/main/resources/sqls/erhalteBuchId.sql");
+            String selBuchungId = getContentFromFile("src/main/resources/sqls/erhalteBuchungId.sql");
             String selZimBelId = getContentFromFile("src/main/resources/sqls/erhalteZimmerBelegungId.sql");
-            String buchung = getConnectionString("src/main/resources/sqls/Buchung.sql");
-            String zimmerBel = getConnectionString("src/main/resources/sqls/Buchung.sql");
+            String buchung = getContentFromFile("src/main/resources/sqls/Buchung.sql");
+            String zimmerBel = getContentFromFile("src/main/resources/sqls/Buchung.sql");
 
             // get further info
             PreparedStatement psBuchungId = connection.prepareStatement(selBuchungId);
@@ -286,14 +288,14 @@ public class JdbcGelb {
 
         } catch (SQLException e){
             e.printStackTrace();
-            connection.rollback();
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
             success = false;
         }finally {
-            try{
-                closeConnection();
-            } catch (SQLException e){
-                // do nothing
-            }
+            closeConnection();
         }
 
 
@@ -325,11 +327,7 @@ public class JdbcGelb {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
-            try{
-                closeConnection();
-            } catch (SQLException e){
-                // do nothing
-            }
+            closeConnection();
         }
 
     }
@@ -350,11 +348,7 @@ public class JdbcGelb {
         } catch (SQLException e){
             e.printStackTrace();
         }finally {
-            try {
-                closeConnection();
-            } catch (SQLException){
-                // Do nothing
-            }
+            closeConnection();
         }
         return data;
     }
@@ -377,7 +371,7 @@ public class JdbcGelb {
         }catch (ParseException e){
             System.out.println("Could not parse gebDatum String");
             e.printStackTrace();
-            return;
+            return null;
         }
 
         try{
@@ -430,11 +424,7 @@ public class JdbcGelb {
                 e1.printStackTrace();
             }
         }finally {
-            try {
-                closeConnection();
-            } catch (SQLException){
-                // Do nothing
-            }
+            closeConnection();
         }
         return kundeId;
     }
@@ -458,11 +448,7 @@ public class JdbcGelb {
         } catch (SQLException e){
             e.printStackTrace();
         }finally {
-            try {
-                closeConnection();
-            } catch (SQLException){
-                // Do nothing
-            }
+            closeConnection();
         }
 
     }
