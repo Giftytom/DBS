@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package ch.ffhs.dbs.jdbc;
 
@@ -13,169 +13,192 @@ import java.util.*;
 
 /**
  * @author Thomas Andre
- *
  */
 public class JdbcGelb {
-	private String dbDriver;
-	private String connectionString;
-	private String user;
-	private String passwd;
-	private Connection connection;
-	private int mitarbeiterID;
-	private Date anreiseDatum;
-	private Date abreiseDatum;
-	private Integer buchungId;
-	private Integer kundeId;
+    private String dbDriver;
+    private String connectionString;
+    private String user;
+    private String passwd;
+    private Connection connection;
+    private int mitarbeiterID;
+    private Date anreiseDatum;
+    private Date abreiseDatum;
+    private Integer buchungId;
+    private Integer kundeId;
 
-	/**
-	 * Constructor
-	 */
-	public JdbcGelb() {
-		setConfig();
-	}
-
-	/**
-	 * Set initial parameters from Configfile
-	 */
-	protected void setConfig() {
-		Properties properties = new Properties();
-		InputStream input = null;
-		try {
-			input = new FileInputStream("DB_NB4.properties");
-			properties.load(input);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		dbDriver = properties.getProperty("dbDriver");
-		connectionString = properties.getProperty("connection");
-		user = properties.getProperty("user");
-		passwd = properties.getProperty("passwd");
-		
-	}
-	
-	public String getDbDriver(){
-		return dbDriver;
-	}
-	
-	public String getConnectionString(){
-		return connectionString;
-	}
-	
-	public String getUser(){
-		return user;
-	}
-	
-	public String getPasswd(){
-		return passwd;
-	}
-	
-	public Connection getConnection(){
-		return connection;
-	}
-
-	public int getMitarbeiterID() {return mitarbeiterID; }
-
-	public Date getAnreiseDatum() {return anreiseDatum;}
-
-	public Date getAbreiseDatum() {return abreiseDatum;}
-
-	void setBuchungId(Integer id){
-	    buchungId = id;
-    }
-    public Integer getBuchungId(){
-	    return buchungId;
+    /**
+     * Constructor
+     */
+    public JdbcGelb() {
+        setConfig();
     }
 
-    void setKundeId(Integer id){
+    /**
+     * Set initial parameters from Configfile
+     */
+    protected void setConfig() {
+        Properties properties = new Properties();
+        InputStream input = null;
+        try {
+            input = new FileInputStream("DB_NB4.properties");
+            properties.load(input);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        dbDriver = properties.getProperty("dbDriver");
+        connectionString = properties.getProperty("connection");
+        user = properties.getProperty("user");
+        passwd = properties.getProperty("passwd");
+
+    }
+
+    public String getDbDriver() {
+        return dbDriver;
+    }
+
+    public String getConnectionString() {
+        return connectionString;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public int getMitarbeiterID() {
+        return mitarbeiterID;
+    }
+
+    public Date getAnreiseDatum() {
+        return anreiseDatum;
+    }
+
+    public Date getAbreiseDatum() {
+        return abreiseDatum;
+    }
+
+    void setBuchungId(Integer id) {
+        buchungId = id;
+    }
+
+    public Integer getBuchungId() {
+        return buchungId;
+    }
+
+    void setKundeId(Integer id) {
         kundeId = id;
     }
-    public Integer getKundeId(){
+
+    public Integer getKundeId() {
         return kundeId;
     }
 
-	public void setMitarbeiterID(int mitarbeiterID) {
-		this.mitarbeiterID = mitarbeiterID;
-	}
+    public void setMitarbeiterID(int mitarbeiterID) {
+        this.mitarbeiterID = mitarbeiterID;
+    }
 
-	/**
-	 * Setze An- und Abreisedatum gleichzeitig
-	 * @param anreise
-	 * @param abreise
-	 */
-	public void setAnUndAbreiseDatum(String anreise, String abreise) {
-		DateFormat df  = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			anreiseDatum = new Date(df.parse(anreise).getTime());
-			abreiseDatum = new Date(df.parse(abreise).getTime());
-		}catch (ParseException e){
-			System.out.println("Could not parse Anreise- und Abreise Datum Strings");
-			e.printStackTrace();
-		}
-		// man koente noch pruefen, ob AnreiseDatum aelter als das AbreiseSatum ist
-	}
+    /**
+     * Setze An- und Abreisedatum gleichzeitig
+     *
+     * @param anreise
+     * @param abreise
+     */
+    public void setAnUndAbreiseDatum(String anreise, String abreise) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            anreiseDatum = new Date(df.parse(anreise).getTime());
+            abreiseDatum = new Date(df.parse(abreise).getTime());
+        } catch (ParseException e) {
+            System.out.println("Could not parse Anreise- und Abreise Datum Strings");
+            e.printStackTrace();
+        }
+        // man koente noch pruefen, ob AnreiseDatum aelter als das AbreiseSatum ist
+    }
 
-	/**
-	 * Baue eine Verbindung zur DB auf
-	 * @throws SQLException
-	 */
-	public void buildUpConnection() throws SQLException{
-		try {
-			Class.forName(getDbDriver()).newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    /**
+     * Baue eine Verbindung zur DB auf
+     *
+     * @throws SQLException
+     */
+    public void buildUpConnection() throws SQLException {
+        try {
+            Class.forName(getDbDriver()).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		connection = DriverManager.getConnection(getConnectionString(), getUser(), getPasswd());
+        connection = DriverManager.getConnection(getConnectionString(), getUser(), getPasswd());
 
-	}
+    }
 
-	/**
-	 * Baue die Verbindung zur DB ab
-	 * @throws SQLException
-	 */
-	public void closeConnection(){
-		if (connection != null) try {
+    /**
+     * Baue die Verbindung zur DB ab
+     *
+     * @throws SQLException
+     */
+    public void closeConnection() {
+        if (connection != null) try {
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-	}
+    }
+
+    /* Hilfsmethode für die Anzeige */
+    private static final String padString(final String string) {
+        return string + String.format("%" + (25 - string.length()) + "s", "");
+    }
+
 
     /**
      * Prints the Content of a List of Maps.
+     *
      * @param data
      */
-	public static void printSelectReturn(List<Map<String, Object>> data) {
-		for (int i = 0; i < data.size(); i++){
-            for (String key : data.get(i).keySet()){
+    public static void printSelectReturn(List<Map<String, Object>> data) {
+
+
+        for (int i = 0; i < data.size(); i++) {
+            for (String key : data.get(i).keySet()) {
+
                 // needs maybe some beautification at print
-                System.out.print("" + data.get(i).get(key) + ", ");
+                //System.out.print("" + data.get(i).get(key) + ", ");
+                System.out.print(padString(data.get(i).get(key).toString()));
             }
             System.out.println("");
         }
-	}
+    }
 
-	/**
-	 * Macht eine SQL-Abfrage und returniert eine Liste freier Doppelzimmer
-	 * @return
-	 * @throws SQLException
-	 */
-	public List<Map<String, Object>> getFreieDoppelZimmer() throws SQLException {
+    /**
+     * Macht eine SQL-Abfrage und returniert eine Liste freier Doppelzimmer
+     *
+     * @return
+     * @throws SQLException
+     */
+    public List<Map<String, Object>> getFreieDoppelZimmer() throws SQLException {
         List<Map<String, Object>> data = null;
-	    buildUpConnection();
-	    String freieZimmer = getContentFromFile("src/main/resources/sqls/listFreieDoppelZimmer.sql");
+        buildUpConnection();
+        String freieZimmer = getContentFromFile("src/main/resources/sqls/listFreieDoppelZimmer.sql");
         PreparedStatement stmt = getConnection().prepareStatement(freieZimmer);
         stmt.setDate(1, anreiseDatum);
         stmt.setDate(2, abreiseDatum);
+        System.out.println(stmt.toString());
         data = doSelectRLock(stmt);
         closeConnection();
         return data;
@@ -184,6 +207,7 @@ public class JdbcGelb {
 
     /**
      * Summary der Hotelbuchung
+     *
      * @return
      * @throws SQLException
      */
@@ -198,7 +222,7 @@ public class JdbcGelb {
         return data;
     }
 
-    private List<Map<String, Object>> doSelectRLock(PreparedStatement statement) throws SQLException{
+    private List<Map<String, Object>> doSelectRLock(PreparedStatement statement) throws SQLException {
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
         Map<String, Object> row = null;
         //nur vollstaendig erfolgte Transaktionen
@@ -225,26 +249,28 @@ public class JdbcGelb {
 
     /**
      * Erhalte die naechste iD
+     *
      * @param statement
      * @return
      * @throws SQLException
      */
-    public Integer getIdFromSelect(PreparedStatement statement) throws SQLException{
-	    ResultSet rs = statement.executeQuery();
+    public Integer getIdFromSelect(PreparedStatement statement) throws SQLException {
+        ResultSet rs = statement.executeQuery();
         Integer id = null;
-        while (rs.next()){
+        while (rs.next()) {
             id = rs.getInt(1);
         }
         rs.close();
-	    return id;
+        return id;
     }
 
     /**
      * books the room and sets the bookingId
+     *
      * @param zimId
      * @return
      */
-    public boolean bookARoom(Integer zimId){
+    public boolean bookARoom(Integer zimId) {
         boolean success = true;
         try {
             buildUpConnection();
@@ -257,11 +283,10 @@ public class JdbcGelb {
             psPruefe.setInt(1, zimId);
             psPruefe.setDate(2, anreiseDatum);
             psPruefe.setDate(3, abreiseDatum);
-            System.out.println(psPruefe.toString());
             Integer zimmerId = getIdFromSelect(psPruefe);
 
             //vorzeitiger Abbruch, Zimmer nicht mehr frei
-            if (zimmerId != null){
+            if (zimmerId != null) {
                 psPruefe.close();
                 connection.rollback();
                 return false;
@@ -297,7 +322,7 @@ public class JdbcGelb {
             // keep the buchungId after success
             setBuchungId(buchungId);
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             try {
                 connection.rollback();
@@ -305,18 +330,16 @@ public class JdbcGelb {
                 e1.printStackTrace();
             }
             success = false;
-        }finally {
+        } finally {
             closeConnection();
         }
-
-
         return success;
     }
 
     /**
      * Loesche Buchung anhand von BuchungId
      */
-    public void deleteBooking(){
+    public void deleteBooking() {
 
         try {
             buildUpConnection();
@@ -335,9 +358,9 @@ public class JdbcGelb {
 
             connection.commit();
             setBuchungId(null);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeConnection();
         }
 
@@ -346,19 +369,20 @@ public class JdbcGelb {
 
     /**
      * Suche alle Kunden anhand vom Nachnamen
+     *
      * @param Name
      * @return
      */
-    public List<Map<String, Object>> getKundeIds(String Name){
+    public List<Map<String, Object>> getKundeIds(String Name) {
         List<Map<String, Object>> data = null;
-        try{
+        try {
             buildUpConnection();
             String selKundeId = getContentFromFile("src/main/resources/sqls/sucheKundeMitNachname.sql");
             PreparedStatement psSelKunden = connection.prepareStatement(selKundeId);
             data = doSelectRLock(psSelKunden);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeConnection();
         }
         return data;
@@ -366,6 +390,7 @@ public class JdbcGelb {
 
     /**
      * Erfasse Kunden mit Angaben
+     *
      * @param vorname
      * @param nachname
      * @param gebDatum
@@ -373,19 +398,19 @@ public class JdbcGelb {
      * @param email
      * @return KundeId
      */
-    public Integer erfasseKunde(String vorname, String nachname, String gebDatum, String geschlecht, String email){
-        DateFormat df  = new SimpleDateFormat("yyyy-MM-dd");
+    public Integer erfasseKunde(String vorname, String nachname, String gebDatum, String geschlecht, String email) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date geburtsDatum = null;
         Integer kundeId = null;
         try {
             geburtsDatum = new Date(df.parse(gebDatum).getTime());
-        }catch (ParseException e){
+        } catch (ParseException e) {
             System.out.println("Could not parse gebDatum String");
             e.printStackTrace();
             return null;
         }
 
-        try{
+        try {
             buildUpConnection();
             connection.setAutoCommit(false);
             connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
@@ -411,7 +436,7 @@ public class JdbcGelb {
             psInsPerson.setString(2, vorname);
             psInsPerson.setString(3, nachname);
             psInsPerson.setDate(4, geburtsDatum);
-            psInsPerson.setString(5, geschlecht.substring(0,1));
+            psInsPerson.setString(5, geschlecht.substring(0, 1));
             psInsPerson.executeUpdate();
 
             PreparedStatement psInsEmail = connection.prepareStatement(insEmail);
@@ -426,7 +451,7 @@ public class JdbcGelb {
             psInsKunde.executeUpdate();
 
             connection.commit();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             kundeId = null;
             try {
@@ -434,7 +459,7 @@ public class JdbcGelb {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-        }finally {
+        } finally {
             closeConnection();
         }
         return kundeId;
@@ -442,10 +467,11 @@ public class JdbcGelb {
 
     /**
      * Update Buchung mit KundeId
+     *
      * @param kundeId
      */
-    public void updateBuchungWithKundeId(Integer kundeId){
-        try{
+    public void updateBuchungWithKundeId(Integer kundeId) {
+        try {
             buildUpConnection();
             connection.setAutoCommit(false);
             connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
@@ -456,42 +482,44 @@ public class JdbcGelb {
             psUpdateBuchung.executeUpdate();
 
             connection.commit();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeConnection();
         }
 
     }
-	/**
-	 * Get the Content of the file, the SQL
-	 * @param file
-	 * @return SQL String
-	 */
-	static String getContentFromFile(String file){
+
+    /**
+     * Get the Content of the file, the SQL
+     *
+     * @param file
+     * @return SQL String
+     */
+    static String getContentFromFile(String file) {
         BufferedReader reader = null;
-        String         line = null;
-        StringBuilder  stringBuilder = new StringBuilder();
-        String         ls = System.getProperty("line.separator");
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
 
         try {
             reader = new BufferedReader(new FileReader(file));
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
 
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 reader.close();
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return stringBuilder.toString();
-	}
+    }
 
 }

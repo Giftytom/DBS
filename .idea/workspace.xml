@@ -4,7 +4,7 @@
     <list default="true" id="a54407fd-2f66-45e7-b5bd-29fac5044307" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" afterPath="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" afterPath="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,10 +30,18 @@
       <file leaf-file-name="JdbcGelb.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="291" column="34" lean-forward="false" selection-start-line="291" selection-start-column="34" selection-end-line="291" selection-end-column="34" />
+            <state relative-caret-position="-870">
+              <caret line="341" column="19" lean-forward="false" selection-start-line="341" selection-start-column="19" selection-end-line="341" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1861#1862#0" expanded="true" />
+                <element signature="e#1897#1898#0" expanded="true" />
+                <element signature="e#1934#1935#0" expanded="true" />
+                <element signature="e#1969#1970#0" expanded="true" />
+                <element signature="e#2006#2007#0" expanded="true" />
+                <element signature="e#2041#2042#0" expanded="true" />
+                <element signature="e#2212#2213#0" expanded="true" />
+                <element signature="e#2275#2276#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,8 +82,8 @@
       <file leaf-file-name="listFreieDoppelZimmer.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+            <state relative-caret-position="160">
+              <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -138,10 +146,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/sqls/erfasseEmail.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/erfasseKunde.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/updateBuchungMitKundeId.sql" />
-        <option value="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
       </list>
     </option>
   </component>
@@ -997,7 +1005,7 @@
       <workItem from="1496859964054" duration="503000" />
       <workItem from="1496860493446" duration="453000" />
       <workItem from="1496947926856" duration="494000" />
-      <workItem from="1496948502039" duration="2943000" />
+      <workItem from="1496948502039" duration="3855000" />
     </task>
     <task id="LOCAL-00001" summary="some trials with intellij">
       <created>1493657152854</created>
@@ -1097,43 +1105,50 @@
       <option name="project" value="LOCAL" />
       <updated>1496951058453</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="booking and test works">
+      <created>1496951458364</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1496951458364</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 38s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 58m 43s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 40m 23s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 59m 52s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 42m 01s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 01m 22s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 42m 53s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 02m 05s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 47m 10s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 02m 50s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 49m 11s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 03m 36s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 49m 54s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 04m 04s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 50m 08s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 04m 29s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 50m 16s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 04m 56s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 50m 20s.xml">
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 22h 05m 07s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33376000" />
+    <option name="totallyTimeSpent" value="34288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1149,7 +1164,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1186,7 +1201,8 @@
     <MESSAGE value="A1 logisch ausprogrammiert" />
     <MESSAGE value="removed ejbModule" />
     <MESSAGE value="cleanups" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanups" />
+    <MESSAGE value="booking and test works" />
+    <option name="LAST_COMMIT_MESSAGE" value="booking and test works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1547,14 +1563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/ZimmerBelegung.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1581,12 +1589,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="291" column="34" lean-forward="false" selection-start-line="291" selection-start-column="34" selection-end-line="291" selection-end-column="34" />
+        <state relative-caret-position="-870">
+          <caret line="341" column="19" lean-forward="false" selection-start-line="341" selection-start-column="19" selection-end-line="341" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1861#1862#0" expanded="true" />
+            <element signature="e#1897#1898#0" expanded="true" />
+            <element signature="e#1934#1935#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="e#2006#2007#0" expanded="true" />
+            <element signature="e#2041#2042#0" expanded="true" />
+            <element signature="e#2212#2213#0" expanded="true" />
+            <element signature="e#2275#2276#0" expanded="true" />
           </folding>
         </state>
       </provider>
