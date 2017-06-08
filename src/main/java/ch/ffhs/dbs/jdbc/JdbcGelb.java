@@ -135,6 +135,7 @@ public class JdbcGelb {
 		}
 
 		connection = DriverManager.getConnection(getConnectionString(), getUser(), getPasswd());
+
 	}
 
 	/**

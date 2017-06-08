@@ -23,7 +23,7 @@ public class JdbcGelbTest {
 
     @Test
     public void testSelectFreieDoppelZimmer(){
-        jdbcGelb.setAnUndAbreiseDatum("2017-01-01", "2017-10-15");
+        jdbcGelb.setAnUndAbreiseDatum("2017-10-01", "2017-10-15");
 
         List<Map<String, Object>> data = null;
         try {
