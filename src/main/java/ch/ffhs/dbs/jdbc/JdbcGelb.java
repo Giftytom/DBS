@@ -198,7 +198,6 @@ public class JdbcGelb {
         PreparedStatement stmt = getConnection().prepareStatement(freieZimmer);
         stmt.setDate(1, anreiseDatum);
         stmt.setDate(2, abreiseDatum);
-        System.out.println(stmt.toString());
         data = doSelectRLock(stmt);
         closeConnection();
         return data;

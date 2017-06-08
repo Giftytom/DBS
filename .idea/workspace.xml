@@ -4,7 +4,6 @@
     <list default="true" id="a54407fd-2f66-45e7-b5bd-29fac5044307" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" afterPath="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,8 +29,8 @@
       <file leaf-file-name="JdbcGelb.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-870">
-              <caret line="341" column="19" lean-forward="false" selection-start-line="341" selection-start-column="19" selection-end-line="341" selection-end-column="19" />
+            <state relative-caret-position="290">
+              <caret line="199" column="38" lean-forward="false" selection-start-line="199" selection-start-column="38" selection-end-line="199" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1861#1862#0" expanded="true" />
@@ -1005,7 +1004,7 @@
       <workItem from="1496859964054" duration="503000" />
       <workItem from="1496860493446" duration="453000" />
       <workItem from="1496947926856" duration="494000" />
-      <workItem from="1496948502039" duration="3855000" />
+      <workItem from="1496948502039" duration="3951000" />
     </task>
     <task id="LOCAL-00001" summary="some trials with intellij">
       <created>1493657152854</created>
@@ -1112,7 +1111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496951458364</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="booking and test works">
+      <created>1496952369311</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1496952369311</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1148,7 +1154,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34288000" />
+    <option name="totallyTimeSpent" value="34384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1599,8 +1605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-870">
-          <caret line="341" column="19" lean-forward="false" selection-start-line="341" selection-start-column="19" selection-end-line="341" selection-end-column="19" />
+        <state relative-caret-position="290">
+          <caret line="199" column="38" lean-forward="false" selection-start-line="199" selection-start-column="38" selection-end-line="199" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1861#1862#0" expanded="true" />
