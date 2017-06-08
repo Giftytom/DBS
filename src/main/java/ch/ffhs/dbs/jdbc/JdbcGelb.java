@@ -174,8 +174,8 @@ public class JdbcGelb {
 	    buildUpConnection();
 	    String freieZimmer = getContentFromFile("src/main/resources/sqls/listFreieDoppelZimmer.sql");
         PreparedStatement stmt = getConnection().prepareStatement(freieZimmer);
-        stmt.setDate(1, abreiseDatum);
-        stmt.setDate(2, anreiseDatum);
+        stmt.setDate(1, anreiseDatum);
+        stmt.setDate(2, abreiseDatum);
         data = doSelectRLock(stmt);
         closeConnection();
         return data;
@@ -283,6 +283,8 @@ public class JdbcGelb {
             psZimBel.setInt(1, zimBelId);
             psZimBel.setInt(2, buchungId);
             psZimBel.setInt(3, zimmerId);
+            psZimBel.executeUpdate();
+
             connection.commit();
             // keep the buchungId after success
             setBuchungId(buchungId);
