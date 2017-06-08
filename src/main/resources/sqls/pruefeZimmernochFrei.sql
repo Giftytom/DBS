@@ -1,11 +1,9 @@
-SELECT DISTINCT z.ZimmerId
-	FROM Zimmer z
-    LEFT OUTER JOIN ZimmerBelegung zb ON (z.ZimmerId = zb.ZimmerId)
-    WHERE z.ZimmerId = ?
-    AND zb.BuchungId NOT IN (
-		SELECT b.BuchungId FROM Buchung b
-              WHERE (b.AbreiseDatum > ?
-              AND b.AnreiseDatum < ?)
-              AND b.Storno = FALSE
-              AND b.BuchungId = zb.BuchungId
-    );
+SELECT z.ZimmerId, b.AnreiseDatum, b.AbreiseDatum
+ FROM Zimmer z
+ JOIN ZimmerBelegung zb ON zb.ZimmerId = z.ZimmerId
+ JOIN Buchung b on b.BuchungId = zb.BuchungId
+ WHERE z.ZimmerId = ?
+ AND b.AbreiseDatum > ?
+ AND b.AnreiseDatum < ?
+ AND b.storno = FALSE
+ FOR UPDATE

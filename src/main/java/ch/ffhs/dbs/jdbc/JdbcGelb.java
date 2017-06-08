@@ -261,8 +261,12 @@ public class JdbcGelb {
             Integer zimmerId = getIdFromSelect(psPruefe);
 
             //vorzeitiger Abbruch, Zimmer nicht mehr frei
-            if (zimmerId == null)
+            if (zimmerId != null){
+                psPruefe.close();
+                connection.rollback();
                 return false;
+            }
+
 
             // get Selects
             String selBuchungId = getContentFromFile("src/main/resources/sqls/erhalteBuchungId.sql");
@@ -285,7 +289,7 @@ public class JdbcGelb {
 
             PreparedStatement psZimBel = connection.prepareStatement(zimmerBel);
             psZimBel.setInt(1, zimBelId);
-            psZimBel.setInt(2, zimmerId);
+            psZimBel.setInt(2, zimId);
             psZimBel.setInt(3, buchungId);
             psZimBel.executeUpdate();
 

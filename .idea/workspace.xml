@@ -27,11 +27,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JdbcGelb.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JdbcGelb.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="259" column="50" lean-forward="false" selection-start-line="259" selection-start-column="50" selection-end-line="259" selection-end-column="50" />
+            <state relative-caret-position="130">
+              <caret line="291" column="34" lean-forward="false" selection-start-line="291" selection-start-column="34" selection-end-line="291" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pruefeZimmernochFrei.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pruefeZimmernochFrei.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="100">
+              <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -62,8 +62,8 @@
       <file leaf-file-name="JdbcGelbTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state relative-caret-position="790">
+              <caret line="64" column="37" lean-forward="false" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,10 +138,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/sqls/erfasseEmail.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/erfasseKunde.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/updateBuchungMitKundeId.sql" />
-        <option value="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" />
         <option value="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" />
       </list>
     </option>
   </component>
@@ -997,7 +997,7 @@
       <workItem from="1496859964054" duration="503000" />
       <workItem from="1496860493446" duration="453000" />
       <workItem from="1496947926856" duration="494000" />
-      <workItem from="1496948502039" duration="2549000" />
+      <workItem from="1496948502039" duration="2943000" />
     </task>
     <task id="LOCAL-00001" summary="some trials with intellij">
       <created>1493657152854</created>
@@ -1090,28 +1090,17 @@
       <option name="project" value="LOCAL" />
       <updated>1496950403072</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="cleanups">
+      <created>1496951058453</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1496951058453</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 24m 19s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 31m 30s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 34m 05s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 35m 26s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 31s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 35s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 38s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
@@ -1124,9 +1113,27 @@
     <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 42m 53s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 47m 10s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 49m 11s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 49m 54s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 50m 08s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 50m 16s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 50m 20s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32982000" />
+    <option name="totallyTimeSpent" value="33376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1142,7 +1149,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32834226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1548,16 +1555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/ZimmerBelegung.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1566,21 +1563,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="259" column="50" lean-forward="false" selection-start-line="259" selection-start-column="50" selection-end-line="259" selection-end-column="50" />
+        <state relative-caret-position="100">
+          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="790">
+          <caret line="64" column="37" lean-forward="false" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="130">
+          <caret line="291" column="34" lean-forward="false" selection-start-line="291" selection-start-column="34" selection-end-line="291" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
