@@ -4,8 +4,8 @@ SELECT DISTINCT z.ZimmerId
     WHERE z.ZimmerId = ?
     AND zb.BuchungId NOT IN (
 		SELECT b.BuchungId FROM Buchung b
-              WHERE (b.AbreiseDatum > @AnreiseDatum
-              AND b.AnreiseDatum < @AbreiseDatum)
+              WHERE (b.AbreiseDatum > ?
+              AND b.AnreiseDatum < ?)
               AND b.Storno = FALSE
               AND b.BuchungId = zb.BuchungId
     );

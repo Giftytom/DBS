@@ -4,7 +4,7 @@
     <list default="true" id="a54407fd-2f66-45e7-b5bd-29fac5044307" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" afterPath="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" afterPath="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" afterPath="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,11 +27,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JdbcGelb.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JdbcGelb.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="281" column="80" lean-forward="true" selection-start-line="281" selection-start-column="80" selection-end-line="281" selection-end-column="80" />
+            <state relative-caret-position="210">
+              <caret line="259" column="50" lean-forward="false" selection-start-line="259" selection-start-column="50" selection-end-line="259" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,11 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pruefeZimmernochFrei.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZimmerBelegung.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/ZimmerBelegung.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pruefeZimmernochFrei.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+            <state relative-caret-position="140">
+              <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -52,8 +62,8 @@
       <file leaf-file-name="JdbcGelbTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,8 +139,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/sqls/erfasseKunde.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/updateBuchungMitKundeId.sql" />
         <option value="$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql" />
+        <option value="$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql" />
         <option value="$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java" />
       </list>
     </option>
@@ -987,7 +997,7 @@
       <workItem from="1496859964054" duration="503000" />
       <workItem from="1496860493446" duration="453000" />
       <workItem from="1496947926856" duration="494000" />
-      <workItem from="1496948502039" duration="1896000" />
+      <workItem from="1496948502039" duration="2549000" />
     </task>
     <task id="LOCAL-00001" summary="some trials with intellij">
       <created>1493657152854</created>
@@ -1073,43 +1083,50 @@
       <option name="project" value="LOCAL" />
       <updated>1496949278701</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="cleanups">
+      <created>1496950403072</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1496950403072</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 06m 53s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 07m 00s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 07m 04s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 10m 28s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 11m 20s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 11m 24s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 11m 27s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 20m 38s.xml">
-      <configuration name="JdbcGelbTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 24m 19s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 31m 30s.xml">
       <configuration name="JdbcGelbTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 34m 05s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 35m 26s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 31s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 35s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 36m 38s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 40m 23s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 42m 01s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JdbcGelbTest - 2017.06.08 at 21h 42m 53s.xml">
+      <configuration name="JdbcGelbTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32329000" />
+    <option name="totallyTimeSpent" value="32982000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1403,13 +1420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/ZimmerBelegung.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/Buchung.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1498,6 +1508,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="96" lean-forward="false" selection-start-line="0" selection-start-column="96" selection-end-line="0" selection-end-column="96" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1529,14 +1540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/listFreieDoppelZimmer.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1547,21 +1550,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ch/ffhs/dbs/jdbc/JdbcGelbTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/ZimmerBelegung.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/ffhs/dbs/jdbc/JdbcGelb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="281" column="80" lean-forward="true" selection-start-line="281" selection-start-column="80" selection-end-line="281" selection-end-column="80" />
+        <state relative-caret-position="210">
+          <caret line="259" column="50" lean-forward="false" selection-start-line="259" selection-start-column="50" selection-end-line="259" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sqls/pruefeZimmernochFrei.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>

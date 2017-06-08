@@ -255,7 +255,11 @@ public class JdbcGelb {
             String pruefeZimmer = getContentFromFile("src/main/resources/sqls/pruefeZimmernochFrei.sql");
             PreparedStatement psPruefe = connection.prepareStatement(pruefeZimmer);
             psPruefe.setInt(1, zimId);
+            psPruefe.setDate(2, anreiseDatum);
+            psPruefe.setDate(3, abreiseDatum);
+            System.out.println(psPruefe.toString());
             Integer zimmerId = getIdFromSelect(psPruefe);
+
             //vorzeitiger Abbruch, Zimmer nicht mehr frei
             if (zimmerId == null)
                 return false;
@@ -264,7 +268,7 @@ public class JdbcGelb {
             String selBuchungId = getContentFromFile("src/main/resources/sqls/erhalteBuchungId.sql");
             String selZimBelId = getContentFromFile("src/main/resources/sqls/erhalteZimmerBelegungId.sql");
             String buchung = getContentFromFile("src/main/resources/sqls/Buchung.sql");
-            String zimmerBel = getContentFromFile("src/main/resources/sqls/Buchung.sql");
+            String zimmerBel = getContentFromFile("src/main/resources/sqls/ZimmerBelegung.sql");
 
             // get further info
             PreparedStatement psBuchungId = connection.prepareStatement(selBuchungId);
@@ -281,8 +285,8 @@ public class JdbcGelb {
 
             PreparedStatement psZimBel = connection.prepareStatement(zimmerBel);
             psZimBel.setInt(1, zimBelId);
-            psZimBel.setInt(2, buchungId);
-            psZimBel.setInt(3, zimmerId);
+            psZimBel.setInt(2, zimmerId);
+            psZimBel.setInt(3, buchungId);
             psZimBel.executeUpdate();
 
             connection.commit();
