@@ -1,4 +1,4 @@
-package ch.ffhs.dbs.jdbc;
+package ch.ffhs.dbs.examples;
 
 import java.io.File;
 import java.io.FileInputStream;

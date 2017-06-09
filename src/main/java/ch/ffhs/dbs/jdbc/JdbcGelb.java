@@ -198,7 +198,7 @@ public class JdbcGelb {
         PreparedStatement stmt = getConnection().prepareStatement(freieZimmer);
         stmt.setDate(1, anreiseDatum);
         stmt.setDate(2, abreiseDatum);
-        data = doSelectRLock(stmt);
+        data = doSelect(stmt);
         closeConnection();
         return data;
 
@@ -216,12 +216,12 @@ public class JdbcGelb {
         String selSummary = getContentFromFile("src/main/resources/sqls/ZusammenfassungBuchung.sql");
         PreparedStatement stmt = getConnection().prepareStatement(selSummary);
         stmt.setInt(1, buchungId);
-        data = doSelectRLock(stmt);
+        data = doSelect(stmt);
         closeConnection();
         return data;
     }
 
-    private List<Map<String, Object>> doSelectRLock(PreparedStatement statement) throws SQLException {
+    private List<Map<String, Object>> doSelect(PreparedStatement statement) throws SQLException {
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
         Map<String, Object> row = null;
         //nur vollstaendig erfolgte Transaktionen
@@ -336,6 +336,84 @@ public class JdbcGelb {
     }
 
     /**
+     * Buchung von vielen Zimmern, z.B. fuer eine Gruppe
+     * @param zimmerList
+     * @param anfrageId
+     * @return boolean
+     */
+    public boolean bookManyRooms(List<Integer> zimmerList, Integer anfrageId){
+        boolean succes = false;
+        try {
+            buildUpConnection();
+            // special settings, for lock netweder geht die ganze Buchung oder nichts
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            //Here the sequence of SQLs which have to happen or completely rolled back
+            String pruefeZimmer = getContentFromFile("src/main/resources/sqls/pruefeZimmernochFrei.sql");
+            String selBuchungId = getContentFromFile("src/main/resources/sqls/erhalteBuchungId.sql");
+            String selZimBelId = getContentFromFile("src/main/resources/sqls/erhalteZimmerBelegungId.sql");
+            String buchung = getContentFromFile("src/main/resources/sqls/BuchungAufAnfrage.sql");
+            String zimmerBel = getContentFromFile("src/main/resources/sqls/ZimmerBelegung.sql");
+
+            // Alles unter einer BuchungId
+            PreparedStatement psBuchungId = connection.prepareStatement(selBuchungId);
+            Integer buchungId = getIdFromSelect(psBuchungId);
+
+
+            PreparedStatement psBuchung = connection.prepareStatement(buchung);
+            psBuchung.setInt(1, buchungId);
+            psBuchung.setDate(2, anreiseDatum);
+            psBuchung.setDate(3, abreiseDatum);
+            psBuchung.setInt(4, anfrageId);
+            psBuchung.executeUpdate();
+
+            // Pruefe jedes Zimmer, ob es frei ist und buch es jeweils
+            for (Integer zimmer : zimmerList){
+                //hol naechste ZimmerBelId
+                PreparedStatement psZimBelId = connection.prepareStatement(selZimBelId);
+                Integer zimBelId = getIdFromSelect(psZimBelId);
+
+                //Check ob Zimmer Frei
+                PreparedStatement psPruefe = connection.prepareStatement(pruefeZimmer);
+                psPruefe.setInt(1, zimmer);
+                psPruefe.setDate(2, anreiseDatum);
+                psPruefe.setDate(3, abreiseDatum);
+                Integer zimmerId = getIdFromSelect(psPruefe);
+
+                //vorzeitiger Abbruch, Zimmer nicht mehr frei
+                if (zimmerId != null) {
+                    psPruefe.close();
+                    connection.rollback();
+                    return false;
+                }
+
+                //ZimmerBelegung
+                PreparedStatement psZimBel = connection.prepareStatement(zimmerBel);
+                psZimBel.setInt(1, zimBelId);
+                psZimBel.setInt(2, zimmer);
+                psZimBel.setInt(3, buchungId);
+                psZimBel.executeUpdate();
+            }
+
+            //Wenn alle Buchungen durchgeführt werden konnten (wenige Millisekunden)
+            connection.commit();
+            succes = true;
+
+        } catch (SQLException e){
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }finally {
+            closeConnection();
+        }
+
+        return succes;
+    }
+
+    /**
      * Loesche Buchung anhand von BuchungId
      */
     public void deleteBooking() {
@@ -378,7 +456,7 @@ public class JdbcGelb {
             buildUpConnection();
             String selKundeId = getContentFromFile("src/main/resources/sqls/sucheKundeMitNachname.sql");
             PreparedStatement psSelKunden = connection.prepareStatement(selKundeId);
-            data = doSelectRLock(psSelKunden);
+            data = doSelect(psSelKunden);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

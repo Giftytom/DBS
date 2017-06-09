@@ -1,13 +1,13 @@
-package ch.ffhs.dbs.jdbc;
+package ch.ffhs.dbs.examples;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-
-public class Test1 {
-
+public class VerbindungAufbauen {
 
 	public static void main(String[] args) {
-		String dbDriver = "com.mysql.jdbc.Driver";
+		String dbDriver = "com.mysql.cj.jdbc.Driver";
 		try {
 			Class.forName( dbDriver).newInstance();
 		} catch (Exception e) {
@@ -20,26 +20,11 @@ public class Test1 {
 		try {
 			Connection con = 	DriverManager.getConnection(connectString, 	user, password);
 			
-					
-			String query = "select id, bezeichnung from geraetetyp order by id";
-			
-			Statement stmt = con.createStatement();
-			ResultSet res = stmt.executeQuery(query);
-			
-			while (res.next()) {
-			
-				int id = res.getInt("id");
-				String bezeichnung = res.getString("bezeichnung");
-				System.out.println(id+" "+bezeichnung);
-			}
+			System.out.println("Wir haben eine Verbindung");
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-
-	
-
 	}
-
 }
+

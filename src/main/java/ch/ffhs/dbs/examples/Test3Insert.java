@@ -1,9 +1,9 @@
-package ch.ffhs.dbs.jdbc;
+package ch.ffhs.dbs.examples;
 
 import java.sql.*;
 
 
-public class Test2MitParameter {
+public class Test3Insert {
 
 
 	public static void main(String[] args) {
@@ -18,12 +18,16 @@ public class Test2MitParameter {
 		String user = "root";
 		String password = "dbt";
 		try {
-			Connection con = 	DriverManager.getConnection(connectString, 	user, password);
-				
-			String query = "select id, bezeichnung from geraetetyp order by id";
+			Connection con = 	DriverManager.getConnection(connectString, 	user, password);			
+						
+			String query  = "select id, bezeichnung from geraetetyp where id = ? ";
 			
-			Statement stmt = con.createStatement();
-			ResultSet res = stmt.executeQuery(query);
+			PreparedStatement stmt = con.prepareStatement(query);
+			
+			int idToSelect = 100;
+			
+			stmt.setInt(1,idToSelect);
+			ResultSet res = stmt.executeQuery();
 			
 			while (res.next()) {
 			
@@ -31,30 +35,35 @@ public class Test2MitParameter {
 				String bezeichnung = res.getString("bezeichnung");
 				System.out.println(id+" "+bezeichnung);
 			}
+			
 			System.out.println("**********************");
+			
+			String insert = "insert into geraetetyp (id, bezeichnung) values (?,?)";
+			System.out.println(insert);
+			
+			PreparedStatement stmtInsert = con.prepareStatement(insert);
+			
 			int newId = 100;
 			String newBezeichnung = "Eine \'Bezeichnung\' als Test";
 			
-			String insert = "insert into geraetetyp (id, bezeichnung) "
-					+ " value (" 
-					+ newId + ", '"
-					+ newBezeichnung + "');";
+			stmtInsert.setInt(1, newId);
+			stmtInsert.setString(2, newBezeichnung);
+						
 			
-			System.out.println(insert);
-			
-			int num = stmt.executeUpdate(insert);
+			int num = stmtInsert.executeUpdate();
 			System.out.println("**********************");
-			
-			stmt = con.createStatement();
-			res = stmt.executeQuery(query);
+				
+			idToSelect = 100;
+			stmt.setInt(1,idToSelect);
+			res = stmt.executeQuery();
 			
 			while (res.next()) {
-				
+			
 				int id = res.getInt("id");
 				String bezeichnung = res.getString("bezeichnung");
 				System.out.println(id+" "+bezeichnung);
 			}
-			
+				
 			
 			
 			con.close();

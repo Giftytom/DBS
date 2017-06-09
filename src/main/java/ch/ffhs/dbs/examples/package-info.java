@@ -5,4 +5,4 @@
  * @author tkadt
  *
  */
-package ch.ffhs.dbs.jdbc;
+package ch.ffhs.dbs.examples;

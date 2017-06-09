@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,18 @@ public class JdbcGelbTest {
         boolean suc = true;
         jdbcGelb.setAnUndAbreiseDatum("2017-10-01", "2017-10-15");
         suc = jdbcGelb.bookARoom(4920);
+        Assert.assertTrue(suc);
+    }
+
+    @Test
+    public void testMultiBuchung(){
+        boolean suc = true;
+        jdbcGelb.setAnUndAbreiseDatum("2017-10-01", "2017-10-15");
+        List<Integer> zimmer = new ArrayList<>();
+        zimmer.add(4924);
+        zimmer.add(4930);
+        zimmer.add(4921);
+        suc = jdbcGelb.bookManyRooms(zimmer, 6001);
         Assert.assertTrue(suc);
     }
 }

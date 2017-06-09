@@ -1,9 +1,9 @@
-package ch.ffhs.dbs.jdbc;
+package ch.ffhs.dbs.examples;
 
 import java.sql.*;
 
 
-public class Test3 {
+public class Test2 {
 
 
 	public static void main(String[] args) {
@@ -18,16 +18,12 @@ public class Test3 {
 		String user = "root";
 		String password = "dbt";
 		try {
-			Connection con = 	DriverManager.getConnection(connectString, 	user, password);			
-						
-			String query = "select id, bezeichnung from geraetetyp where id = ? ";
+			Connection con = 	DriverManager.getConnection(connectString, 	user, password);
+				
+			String query = "select id, bezeichnung from geraetetyp order by id";
 			
-			PreparedStatement stmt = con.prepareStatement(query);
-			
-			int idToSelect = 99;
-			
-			stmt.setInt(1,idToSelect);
-			ResultSet res = stmt.executeQuery();
+			Statement stmt = con.createStatement();
+			ResultSet res = stmt.executeQuery(query);
 			
 			while (res.next()) {
 			
@@ -35,18 +31,21 @@ public class Test3 {
 				String bezeichnung = res.getString("bezeichnung");
 				System.out.println(id+" "+bezeichnung);
 			}
-				
-			idToSelect = 9;
-			stmt.setInt(1,idToSelect);
-			res = stmt.executeQuery();
+			System.out.println("**********************");
+			String insert = "insert into geraetetyp (id, bezeichnung) value (99,'Mercedes')";
+			int num = stmt.executeUpdate(insert);
+			System.out.println("**********************");
+			
+			stmt = con.createStatement();
+			res = stmt.executeQuery(query);
 			
 			while (res.next()) {
-			
+				
 				int id = res.getInt("id");
 				String bezeichnung = res.getString("bezeichnung");
 				System.out.println(id+" "+bezeichnung);
 			}
-				
+			
 			
 			
 			con.close();

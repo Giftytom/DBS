@@ -1,9 +1,9 @@
-package ch.ffhs.dbs.jdbc;
+package ch.ffhs.dbs.examples;
 
 import java.sql.*;
 
 
-public class Test2 {
+public class Test2MitParameter {
 
 
 	public static void main(String[] args) {
@@ -32,7 +32,16 @@ public class Test2 {
 				System.out.println(id+" "+bezeichnung);
 			}
 			System.out.println("**********************");
-			String insert = "insert into geraetetyp (id, bezeichnung) value (99,'Mercedes')";
+			int newId = 100;
+			String newBezeichnung = "Eine \'Bezeichnung\' als Test";
+			
+			String insert = "insert into geraetetyp (id, bezeichnung) "
+					+ " value (" 
+					+ newId + ", '"
+					+ newBezeichnung + "');";
+			
+			System.out.println(insert);
+			
 			int num = stmt.executeUpdate(insert);
 			System.out.println("**********************");
 			
