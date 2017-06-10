@@ -78,4 +78,17 @@ public class JdbcGelbTest {
         suc = jdbcGelb.bookManyRooms(zimmer, 6001);
         Assert.assertTrue(suc);
     }
+
+    @Test
+    public void testGetSummary(){
+        jdbcGelb.setBuchungId(7005);
+        List<Map<String, Object>> data = null;
+        try {
+            data = jdbcGelb.getSummary();
+            JdbcGelb.printSelectReturn(data);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        Assert.assertNotNull(data);
+    }
 }

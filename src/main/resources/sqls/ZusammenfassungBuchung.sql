@@ -1,7 +1,7 @@
 SELECT b.AnreiseDatum
 , b.AbreiseDatum
-, z.ZimmerId, ZimmerNummer AS 'Nummer'
-, Stockwerk, t.Name AS 'Trakt'
+, z.ZimmerId, z.ZimmerNummer AS 'Nummer'
+, z.Stockwerk, t.Name AS 'Trakt'
 , CASE Alpenblick WHEN TRUE THEN 'ja' ELSE 'nein' END AS 'Alpenblick'
 , CASE Whirlpool WHEN TRUE THEN 'ja' ELSE 'nein' END AS 'Whirlpool'
 , CASE Bad WHEN TRUE THEN 'Bad' ELSE 'Dusche' END AS 'Ausstattung'
@@ -12,4 +12,5 @@ SELECT b.AnreiseDatum
     JOIN Zimmer z ON (zb.ZimmerId = z.ZimmerId)
     JOIN ZimmerTyp zt ON (z.ZimmerTypId = zt.ZimmerTypId)
     JOIN BettenTyp bt ON (zt.BettenTypId = bt.BettenTypId)
+    JOIN Trakt t ON (z.TraktId = t.TraktId)
     WHERE b.BuchungId = ?;

@@ -216,6 +216,7 @@ public class JdbcGelb {
         String selSummary = getContentFromFile("src/main/resources/sqls/ZusammenfassungBuchung.sql");
         PreparedStatement stmt = getConnection().prepareStatement(selSummary);
         stmt.setInt(1, buchungId);
+        //System.out.println(stmt.toString());
         data = doSelect(stmt);
         closeConnection();
         return data;
@@ -397,6 +398,7 @@ public class JdbcGelb {
 
             //Wenn alle Buchungen durchgeführt werden konnten (wenige Millisekunden)
             connection.commit();
+            this.buchungId = buchungId;
             succes = true;
 
         } catch (SQLException e){
@@ -598,5 +600,7 @@ public class JdbcGelb {
         }
         return stringBuilder.toString();
     }
+
+
 
 }
