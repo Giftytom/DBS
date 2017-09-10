@@ -1,3 +1,5 @@
-/bin/
-/target/
-/out/
+*/bin/*
+*/target/*
+*/out/*
+.idea*
+*.class
