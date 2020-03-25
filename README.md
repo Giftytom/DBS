@@ -1,12 +1,11 @@
 # DBS
 A Programm to simulate/execute JDBC Statements
 
-## Setup
-### Pre-Requirements
+## Requirements
 * Apache Maven
 * JAVA JDK 1.8+
 
-### Locally
+## Setupy
 * clone the project
 * execute: mvn clean package
 
